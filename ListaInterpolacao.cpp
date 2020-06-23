@@ -3,15 +3,15 @@ using namespace std;
 /*
 Jose Carlos Vasques Moreira
 Este programa implementa algumas funcoes simples de interpolacao.
-Basta entrar com os valores de x e f(x) desejados e chamar a funcao correspondente para observar
+Basta entrar com os valores de x e f(x) desejados chamar a funcao correspondente para observar
 os resultados. Há alguns exemplos de uso já listados na main, para resolucao da lista de ex. de MS211
 
 
 
 compile me with
-g++ FILENAME -O2 -std=c++17 -o numericalMethods
+g++ FILENAME -O2 -std=c++17 -o PROGRAMNAME
 
-https://github.com/JoseCVM
+https://github.com/JoseCVM/ms211
 */
 double term(int i,double value,vector<double> x){
 	double pro = 1;
@@ -55,22 +55,6 @@ double errorFormulaDo(double value,vector<double> &x,double maxY,int n){
 	err *= maxY;
 	return err;	
 }
-const char *byte_to_binary
-(
-    int x
-)
-{
-    static char b[9];
-    b[0] = '\0';
-
-    int z;
-    for (z = 128; z > 0; z >>= 1)
-    {
-        strcat(b, ((x & z) == z) ? "1" : "0");
-    }
-
-    return b;
-}
 double errorFormula(double value,vector<double> &x,vector<vector<double>> &y,int n){
 	double maxY = getMaxAbs(n+1,y);
 	double finError = INT_MAX;
@@ -82,7 +66,6 @@ double errorFormula(double value,vector<double> &x,vector<vector<double>> &y,int
 		for(int j = 0;j<x.size();j++){
 			if(i&(1<<j)) xx.push_back(x[j]);			
 		}
-		//finError = min(finError,errorFormulaDo(value,xx,maxY,n));
 		double nerror = abs(errorFormulaDo(value,xx,maxY,n));	
 		if(finError > nerror){
 			finError = nerror;

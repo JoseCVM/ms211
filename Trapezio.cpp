@@ -14,23 +14,22 @@ g++ FILENAME -O2 -std=c++17 -o PROGRAMNAME
 https://github.com/JoseCVM/ms211
 */
 double f(double x){ 
-    return exp(-(x*x));
+	return exp(-(x*x));
 } 
   
-// Function to evalute the value of integral 
-double trapezoidal(double a, double b, double n){
-    double h = (b-a)/n; 
-    double res = f(a)+f(b); 
+double trapezio(double a, double b, double n){
+	double h = (b-a)/n; 
+	double res = f(a)+f(b); 
   
-    for (int i = 1; i < n; i++) res += 2*f(a+i*h); 
+	for (int i = 1; i < n; i++) res += 2*f(a+i*h); 
 	res *= (h/2);
-    return res; 
+	return res; 
 }
 
-int main(){    
-    double ini,fim; cin >> ini >> fim;
+int main(){	
+	double ini,fim; cin >> ini >> fim;
 	int n;cin >> n;
   
-    printf("Resultado: %.10lf\n", trapezoidal(ini, fim, n)); 
-    return 0; 
+	printf("Resultado: %.10lf\n", trapezio(ini, fim, n)); 
+	return 0; 
 } 
